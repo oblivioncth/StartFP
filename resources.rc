@@ -24,8 +24,8 @@ IDI_ICON1               ICON                    "res\\FP.ico"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,1,0
- PRODUCTVERSION 0,0,1,0
+ FILEVERSION 0,1,0,0
+ PRODUCTVERSION 0,1,0,0
  FILEFLAGSMASK 0x0L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -42,14 +42,14 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "oblivioncth"
             VALUE "FileDescription", "Persistant starter for BlueMaxima's Flashpoint Launcher"
-            VALUE "FileVersion", "0.0.1.0"
+            VALUE "FileVersion", "0.1.0.0"
             VALUE "InternalName", "StartFP"
             VALUE "LegalCopyright", "Open Source @ 2021 oblivioncth"
             VALUE "LegalTrademarks1", "All Rights Reserved"
             VALUE "LegalTrademarks2", "GNU AGPL V3"
             VALUE "OriginalFilename", "StartFP.exe"
             VALUE "ProductName", "FP Launcher Starter"
-            VALUE "ProductVersion", "0.0.1.0"
+            VALUE "ProductVersion", "0.1.0.0"
         END
     END
     BLOCK "VarFileInfo"
