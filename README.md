@@ -5,3 +5,6 @@ StartFP is an extremely minimal loader application designed to be capable of sta
 ## Usage
 
 Place in the root of your Flashpoint directory and use in place of the "Start Flashpoint" shortcut. Enjoy your shiny icon.
+
+<img src="https://i.imgur.com/QSZHtMd.jpg" width="200">
+<sub><sup>Image Credit: https://www.deviantart.com/arvaus/art/DO-THE-THING-519652657</sup></sub>
