@@ -53,6 +53,6 @@ jobs:
     - name: Upload StartFP build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ steps.get_artifact_name.outputs[env.artifact_output_var] }}
+        name: ${{ steps.get_artifact_name.outputs.artifact_name }}
         path: ${{ env.startfp_install_path }}
         if-no-files-found: error
