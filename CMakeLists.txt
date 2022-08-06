@@ -79,7 +79,6 @@ fetch_file(
     URL "https://raw.githubusercontent.com/FlashpointProject/launcher/master/icons/icon.ico"
     PATH_VAR LAUNCHER_ICON_PATH
 )
-message(STATUS "PATH: ${LAUNCHER_ICON_PATH}")
 
 # Set app sources
 set(C_SOURCES
@@ -108,6 +107,8 @@ set_target_properties(${TARGET_NAME} PROPERTIES
     VERSION ${PROJECT_VERSION}
     OUTPUT_NAME "${PROJECT_NAME}"
     EXPORT_NAME "${PROJECT_NAME}"
+    MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+    # Application is designed to be as minimal as possible, so always use static C runtime library
 )
 
 # Set target exe details
