@@ -12,7 +12,7 @@ int main()
     dummySInfo.cb = sizeof(dummySInfo);
 
     // Change working dir
-    SetCurrentDirectory(L"Launcher");
+    SetCurrentDirectory("Launcher");
 
     // Do the thing
     CreateProcess(L"Flashpoint.exe", commandLine, NULL, NULL, 0, NORMAL_PRIORITY_CLASS, NULL, NULL, &dummySInfo, &dummyPInfo);
