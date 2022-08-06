@@ -3,7 +3,6 @@
 int main()
 {
     // Unused crap
-    WCHAR* commandLine = L"";
     STARTUPINFOW dummySInfo;
     PROCESS_INFORMATION dummyPInfo;
     
@@ -15,7 +14,7 @@ int main()
     SetCurrentDirectoryW(L"Launcher");
 
     // Do the thing
-    CreateProcessW(L"Flashpoint.exe", commandLine, NULL, NULL, 0, NORMAL_PRIORITY_CLASS, NULL, NULL, &dummySInfo, &dummyPInfo);
+    CreateProcessW(L"Flashpoint.exe", NULL, NULL, NULL, 0, NORMAL_PRIORITY_CLASS, NULL, NULL, &dummySInfo, &dummyPInfo);
 
     // Cleanup more crap
     CloseHandle(dummyPInfo.hProcess);
