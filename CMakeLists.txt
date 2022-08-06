@@ -111,6 +111,15 @@ set_target_properties(${TARGET_NAME} PROPERTIES
     # Application is designed to be as minimal as possible, so always use static C runtime library
 )
 
+# Don't spawn a console window (currently MSVC only)
+if(MSVC)
+    target_link_options(${TARGET_NAME} PRIVATE
+        /SUBSYSTEM:windows # This typical is used for GUI apps, but basically says "don't use a console"
+        /ENTRY:mainCRTStartup # This forces the linker to use the console app entry point instead of the GUI entry point (WinMain),
+                              # which is a side effect of setting the above flag on its own
+    )
+endif()
+
 # Set target exe details
 include(StartFP/WinExecutableDetails)
 set_win_executable_details(${TARGET_NAME}
