@@ -72,6 +72,15 @@ setup_verbose_versioning(PROJECT_VERSION_VERBOSE)
 
 #================= Build =========================
 
+# Get FP launcher icon
+include(StartFP/FetchFile)
+fetch_file(
+    NAME fp_launcher_icon
+    URL "https://raw.githubusercontent.com/FlashpointProject/launcher/master/icons/icon.ico"
+    PATH_VAR LAUNCHER_ICON_PATH
+)
+message(STATUS "PATH: ${LAUNCHER_ICON_PATH}")
+
 # Set app sources
 set(C_SOURCES
     src/main.c
@@ -104,7 +113,7 @@ set_target_properties(${TARGET_NAME} PROPERTIES
 # Set target exe details
 include(StartFP/WinExecutableDetails)
 set_win_executable_details(${TARGET_NAME}
-    ICON "res/FP.ico"
+    ICON "${LAUNCHER_ICON_PATH}"
     FILE_VER ${PROJECT_VERSION}
     PRODUCT_VER ${PROJECT_VERSION}
     COMPANY_NAME "oblivioncth"
