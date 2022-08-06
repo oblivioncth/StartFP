@@ -1,0 +1,11 @@
+name: StartFP Push Reaction
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore:
+    - 'master'
+
+jobs:
+  trigger-windows-build:
+    name: Build StartFP (Windows)
+    uses: ./.github/workflows/build-startfp-windows.yml
