@@ -58,7 +58,7 @@ int main()
 {
     // Flashpoint Info
     LPCWSTR launcherDir = L"\\Launcher\\";
-    LPCWSTR launcherExe = L"\\Flashpoint.exe";
+    LPCWSTR launcherExe = L"Flashpoint.exe";
     STARTUPINFOW startupInfo;
 
     // Spawned process info (needed for handle cleanup)
