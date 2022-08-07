@@ -19,12 +19,12 @@ int main()
     startupInfo.cb = sizeof(startupInfo); // Needs to know its own size because it could contain extended info
     ZeroMemory(&processInfo, sizeof(processInfo)); // Would be garbage otherwise
 
-//    // Change working dir
-//    if(!SetCurrentDirectoryW(L"Launcher\\")) // Could instead use 'lpCurrentDirectory' arg of CreateProcess, but CD'ing is how the shortcut does it
-//        return 1; // Not FP
+    // Change working dir
+    if(!SetCurrentDirectoryW(launcherDir)) // Could instead use 'lpCurrentDirectory' arg of CreateProcess, but CD'ing is how the shortcut does it
+        return 1; // Not FP
 
     // Do the thing
-    if(!CreateProcessW(launcherExe, NULL, NULL, NULL, FALSE, 0, NULL, launcherDir, &startupInfo, &processInfo))
+    if(!CreateProcessW(launcherExe, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &startupInfo, &processInfo))
         return 2; // Mission failed, we'll get 'em next time
 
     // Cleanup unused crap handles (required)
