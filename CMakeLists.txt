@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.21.1)
 
 # Project
 # NOTE: DON'T USE TRAILING ZEROS IN VERSIONS
-set(STARTFP_BASE_VERSION 0.1) # Required for CI/CD
+set(STARTFP_BASE_VERSION 0.2) # Required for CI/CD
 project(StartFP
     VERSION ${STARTFP_BASE_VERSION}
     LANGUAGES C
