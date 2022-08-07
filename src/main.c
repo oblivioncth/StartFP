@@ -13,11 +13,12 @@ int main()
     ZeroMemory(&processInfo, sizeof(processInfo)); // Would be garbage otherwise
 
     // Change working dir
-    SetCurrentDirectoryW(L"Launcher"); // Could instead use 'lpCurrentDirectory' arg of CreateProcess, but CD'ing is how the shortcut does it
+    if(!SetCurrentDirectoryW(L"Launcher\\")) // Could instead use 'lpCurrentDirectory' arg of CreateProcess, but CD'ing is how the shortcut does it
+        return 1; // Not FP
 
     // Do the thing
     if(!CreateProcessW(L"Flashpoint.exe", NULL, NULL, NULL, 0, NORMAL_PRIORITY_CLASS, NULL, NULL, &startupInfo, &processInfo))
-        return 1; // Mission failed, we'll get 'em next time
+        return 2; // Mission failed, we'll get 'em next time
 
     // Cleanup unused crap handles (required)
     CloseHandle(processInfo.hProcess);
