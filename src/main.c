@@ -29,8 +29,6 @@ BOOL currentDirectory(LPWSTR* cdBuffer)
 
 void concatStrings(LPCWSTR a, LPCWSTR b, LPWSTR* new)
 {
-
-
     // Get total size
     size_t aCount = wcslen(a);
     size_t aByteSize = aCount * sizeof(WCHAR);
@@ -78,10 +76,6 @@ int main()
     ZeroMemory(&startupInfo, sizeof(startupInfo)); // Would be garbage otherwise
     startupInfo.cb = sizeof(startupInfo); // Needs to know its own size because it could contain extended info
     ZeroMemory(&processInfo, sizeof(processInfo)); // Would be garbage otherwise
-
-//    // Change working dir
-//    if(!SetCurrentDirectoryW(launcherDir)) // Could instead use 'lpCurrentDirectory' arg of CreateProcess, but CD'ing is how the shortcut does it
-//        return 1; // Not FP
 
     // Do the thing
     BOOL started = CreateProcessW(absoluteLauncherPath, NULL, NULL, NULL, FALSE, 0, NULL, absoluteLauncherDir, &startupInfo, &processInfo);
