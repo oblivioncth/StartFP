@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 3.21.1)
 set(STARTFP_BASE_VERSION 0.2) # Required for CI/CD
 project(StartFP
     VERSION ${STARTFP_BASE_VERSION}
-    LANGUAGES C
+    LANGUAGES CXX
     DESCRIPTION "Fancy Flashpoint starter"
 )
 
@@ -18,8 +18,8 @@ string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UC)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-# C
-set(CMAKE_C_STANDARD 99)
+# C++
+set(CMAKE_CXX_STANDARD 11)
 
 # Build augmentation
 enable_language("RC")
@@ -72,6 +72,11 @@ setup_verbose_versioning(PROJECT_VERSION_VERBOSE)
 
 #================= Build =========================
 
+# Import Qt
+find_package(Qt5 REQUIRED COMPONENTS
+    Core
+)
+
 # Get FP launcher icon
 include(StartFP/FetchFile)
 fetch_file(
@@ -81,8 +86,8 @@ fetch_file(
 )
 
 # Set app sources
-set(C_SOURCES
-    src/main.c
+set(CXX_SOURCES
+    src/main.cpp
 )
 
 # Name here needs to be as unique as possible for when this project is included
@@ -99,7 +104,13 @@ add_executable(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${TARGET_NAME})
 # Add sources to target
 target_sources(${TARGET_NAME}
     PRIVATE
-        ${C_SOURCES}
+        ${CXX_SOURCES}
+)
+
+# Link target to libraries
+target_link_libraries(${TARGET_NAME}
+    PRIVATE
+        Qt5::Core
 )
 
 # Configure target properties
@@ -107,7 +118,7 @@ set_target_properties(${TARGET_NAME} PROPERTIES
     VERSION ${PROJECT_VERSION}
     OUTPUT_NAME "${PROJECT_NAME}"
     EXPORT_NAME "${PROJECT_NAME}"
-    MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+    #MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
     # Application is designed to be as minimal as possible, so always use static C runtime library
 )
 
