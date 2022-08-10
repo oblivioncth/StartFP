@@ -57,10 +57,11 @@ int main()
     // Flashpoint Info
     LPCWSTR launcherDir = L"\\Launcher\\";
     LPCWSTR launcherExe = L"Flashpoint.exe";
-    STARTUPINFOW startupInfo;
+    STARTUPINFOW startupInfo = {0}; // Initialize members to 0
+    startupInfo.cb = sizeof(startupInfo); // Required by API
 
     // Spawned process info (needed for handle cleanup)
-    PROCESS_INFORMATION processInfo;
+    PROCESS_INFORMATION processInfo = {0}; // Initialize members to 0
 
     // Determine launcher directory
     LPWSTR cd = NULL;
@@ -71,11 +72,6 @@ int main()
     LPWSTR absoluteLauncherPath = NULL;
     concatStrings(cd, launcherDir, &absoluteLauncherDir);
     concatStrings(absoluteLauncherDir, launcherExe, &absoluteLauncherPath);
-
-    // Initialize unused crap to defaults
-    ZeroMemory(&startupInfo, sizeof(startupInfo)); // Would be garbage otherwise
-    startupInfo.cb = sizeof(startupInfo); // Needs to know its own size because it could contain extended info
-    ZeroMemory(&processInfo, sizeof(processInfo)); // Would be garbage otherwise
 
     // Do the thing
     BOOL started = CreateProcessW(absoluteLauncherPath, NULL, NULL, NULL, FALSE, 0, NULL, absoluteLauncherDir, &startupInfo, &processInfo);
