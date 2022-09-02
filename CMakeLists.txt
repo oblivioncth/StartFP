@@ -28,6 +28,10 @@ enable_language("RC")
 set(PROJ_SCRIPTS_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 list(APPEND CMAKE_MODULE_PATH "${PROJ_SCRIPTS_PATH}/module")
 
+# Get helper scripts
+include(StartFP/FetchOBCMake)
+fetch_ob_cmake("ebaebf68b90ca7be1cdfc16923d8a7020649f468")
+
 # General Variables
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
   set(TARGET_ARCH x64)
@@ -67,13 +71,13 @@ set(PACKAGE_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/out/dist")
 #------------Set Global Build Rules----------------
 
 # Versioning
-include(StartFP/VerboseVersioning)
+include(OB/VerboseVersioning)
 setup_verbose_versioning(PROJECT_VERSION_VERBOSE)
 
 #================= Build =========================
 
 # Get FP launcher icon
-include(StartFP/FetchFile)
+include(OB/FetchFile)
 fetch_file(
     NAME fp_launcher_icon
     URL "https://raw.githubusercontent.com/FlashpointProject/launcher/master/icons/icon.ico"
@@ -121,7 +125,7 @@ if(MSVC)
 endif()
 
 # Set target exe details
-include(StartFP/WinExecutableDetails)
+include(OB/WinExecutableDetails)
 set_win_executable_details(${TARGET_NAME}
     ICON "${LAUNCHER_ICON_PATH}"
     FILE_VER ${PROJECT_VERSION}
