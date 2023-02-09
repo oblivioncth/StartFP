@@ -1,10 +1,6 @@
 name: Build StartFP - Windows
 on:
   workflow_call:
-    outputs:
-      artifact_name:
-        description: "StartFP build artifact"
-        value: ${{ jobs.build-startfp.outputs.artifact_name }}
 env:
   startfp_src_suffix: StartFP/Source
   startfp_src_dir: ${{ github.workspace }}/StartFP/Source
@@ -17,8 +13,6 @@ jobs:
     env:
       vs_dir: C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise
       cmake_gen: Ninja Multi-Config
-    outputs:
-      artifact_name: ${{ steps.get_artifact_name.outputs.artifact_name }}
     steps:
     - name: Set derived variables with shell because GitHub Actions env context sucks
       run: |
@@ -49,10 +43,10 @@ jobs:
         echo "Build complete."
     - name: Get StartFP artifact name
       id: get_artifact_name
-      run: echo "artifact_name=$((Get-ChildItem -Path "${{ env.startfp_package_path }}" -Filter *.zip)[0].BaseName)" >> $Env:GITHUB_OUTPUT
+      run: $artifact_name=$((Get-ChildItem -Path "${{ env.startfp_package_path }}" -Filter *.zip)[0].BaseName)" >> $Env:GITHUB_ENV
     - name: Upload StartFP build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ steps.get_artifact_name.outputs.artifact_name }}
+        name: ${{ env.artifact_name }}
         path: ${{ env.startfp_install_path }}
         if-no-files-found: error
