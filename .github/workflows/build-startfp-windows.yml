@@ -42,10 +42,12 @@ jobs:
         cpack -C "Release"
         echo "Build complete."
     - name: Get StartFP artifact name
-      run: $artifact_name=$((Get-ChildItem -Path "${{ env.startfp_package_path }}" -Filter *.zip)[0].BaseName)" >> $Env:GITHUB_ENV
+      run: |
+        $artifact_name=$((Get-ChildItem -Path "${{ env.startfp_package_path }}" -Filter *.zip)[0].BaseName)
+        echo "current_artifact_name=$artifact_name" >> $Env:GITHUB_ENV
     - name: Upload StartFP build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.artifact_name }}
+        name: ${{ env.current_artifact_name }}
         path: ${{ env.startfp_install_path }}
         if-no-files-found: error
