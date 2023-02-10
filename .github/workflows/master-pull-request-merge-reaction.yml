@@ -28,7 +28,7 @@ jobs:
       uses: oblivioncth/actions/git/tag@dev
       with:
         tag: 'v${{ steps.get-proj-ver.outputs.version }}'
-        message: 'Release v${{ steps.get-proj-ver.outputs.version }}
+        message: 'Release v${{ steps.get-proj-ver.outputs.version }}'
     - name: Move 'latest' tag
       uses: oblivioncth/actions/git/move-latest-tag@dev
     - name: Fast-forward merge master into to dev
